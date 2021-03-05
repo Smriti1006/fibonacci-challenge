@@ -10,34 +10,41 @@ import UIKit
 class ViewController: UIViewController {
 
     let maxLimit = UInt64.max
-    var fibs: [UInt64] = []
+    var fibArray: [UInt64] = []
+    var a = UInt64(0)
+    var b = UInt64(1)
+
+    @IBOutlet weak var fibonacciSeriesTextView: UITextView!
+    
+    //MARK: - View life cycle functions
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.fib(UInt64(maxLimit))
+        self.fibonacciSeriesTextView.text = "\(a),\n"
+        self.fibonacciSequence(UInt64(maxLimit))
         // Do any additional setup after loading the view.
     }
 
-    private func fib(_ n: UInt64) -> [UInt64] {
+    //MARK: - Private functions
 
-        var a = UInt64(0)
-        var b = UInt64(1)
-        fibs.append(a)
-        fibs.append(b)
-        guard n > 1 else { return fibs }
+    private func fibonacciSequence(_ n: UInt64){
+
+        fibArray.append(a)
+        fibArray.append(b)
         
+        guard n > 1 else { return }
+        DispatchQueue.global(qos: .background).async { [self] in
         (2...n).forEach { _ in
             (a, b) = (a &+ b, a)
-            print(a)
-            fibs.append(a)
-
+            do{
+                sleep(1)
+            }
+            DispatchQueue.main.sync { [self] in
+                self.fibonacciSeriesTextView.text = self.fibonacciSeriesTextView.text + "\(a),\n"
+            }
         }
-        return fibs
+        }
         
-        //        (2...n).forEach { i in
-//            fibs.append(fibs[Int(UInt64(i) - UInt64(1))] + fibs[Int(UInt64(i) - UInt64(2))])
-//        }
-//        return fibs
     }
     
 
