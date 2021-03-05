@@ -15,7 +15,6 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.fib(UInt64(maxLimit))
-       // print(myarray)
         // Do any additional setup after loading the view.
     }
 
