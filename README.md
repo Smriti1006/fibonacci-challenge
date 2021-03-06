@@ -1,8 +1,7 @@
 # fibonacci-challenge
 
-This project is a small application that calculates fibonacci series upto Uint64 max value.
-After calculating next number in series, the program sleep for 1 second so that UI update is not very fast for end user.
-Also tuples are being used for storing recursive values of series, i.e.
-(a &+ b, a) is similar to f(n-1)+f(n-2).
+- This application calculates fibonacci series till it reaches Uint64 max value and it uses recursive approach for calculating the next element in the series.
 
-The calculation happens on background thread and UItextview is being updated on main thread.
+- It calculates the result in background and provide live updates(on main thread) the scrollable UI by applying 500ms sleep between each value.
+
+- This application terminates automatically when it reaches maximum value or numberic overflow occurs.
